@@ -59,7 +59,20 @@ More information is only accessible by people who are already enrolled in Term 2
 of CarND. If you are enrolled, see [the project page](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/e8235395-22dd-4b87-88e0-d108c5e5bbf4/concepts/6a4d8d42-6a04-4aa6-b284-1697c0fd6562)
 for instructions and the project rubric.
 
+## Describe the effect each of the P, I, D components had in your implementation.
 
+
+The Proportional (P) component had the large effect on the car's behavior. Car would steer proportionately (Kp times CTE ) in the opposite direction of CTE.
+
+The Differential (D) component counteracts the P component's tendency to overshoot the center line. Tuned D parameter so as not to cause the car to oscillate wildly away from the center.
+
+The integral (I) component aggregrates the small error not handled by (P) component. 
+
+## Describe how the final hyperparameters were chosen.
+I actually started with twiddle algorithm but could not able to implement it properly so ended up finding the cofficient manually. 
+It was running several times with trial and error that I found the value for Kp(-0.5), Kd(-2.5), Ki(-0.0001).While playing with throttle I ended up keeping the throttle constant at 0.15. The value of kp(-0.15), Kd(0), Ki(0). The throttle_error is purposefully made (-1) to make throttle constant at 0.15. The Twiddle.h and Twiddle.cpp with empty methods are part of the code as I intent to complete it in the future
+
+Short Video 
 
 <a href="https://youtu.be/FdPALH5pKyI
 " target="_blank"><img src="http://img.youtube.com/vi/FdPALH5pKyI/0.jpg" 
