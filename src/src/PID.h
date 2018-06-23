@@ -1,6 +1,5 @@
 #ifndef PID_H
 #define PID_H
-#include <chrono>
 
 class PID {
 public:
@@ -17,7 +16,7 @@ public:
   double Kp;
   double Ki;
   double Kd;
-  
+
   /*
   * Constructor
   */
@@ -32,7 +31,7 @@ public:
   * Initialize PID.
   */
   void Init(double Kp, double Ki, double Kd);
-  
+
   /*
   * Update the PID error variables given cross track error.
   */
@@ -42,12 +41,6 @@ public:
   * Calculate the total PID error.
   */
   double TotalError();
-  
-  /**
-   * Updating cofficients
-   */
-  void UpdateP(int index, double amount);
-  
 };
 
 #endif /* PID_H */
