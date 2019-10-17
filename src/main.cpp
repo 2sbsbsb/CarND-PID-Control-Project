@@ -34,18 +34,21 @@ int main()
    uWS::Hub h;
 
    PID pid, pid_throttle;
+
+   // The beauty of the twiddle alogorithm is that it is independent of PID algorithm and hence a separate class
    TWIDDLE twiddle, twiddle_throttle;
    
   // TODO: Initialize the pid variable.
   double init_kp=-0.5;
   double init_ki=-0.0001;
-  double init_kd=-2.5d;
+  double init_kd=-2.5d;  
   pid.Init(init_kp, init_ki, init_kd);
+  // Throttle PID   
   pid_throttle.Init(-0.15, 0 , 0);  
-  
+  // Twiddle Init
   twiddle.Init();
   twiddle_throttle.Init();
-
+  //  
   h.onMessage([&pid,&pid_throttle,&twiddle,&twiddle_throttle](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
     // The 4 signifies a websocket message
@@ -72,7 +75,8 @@ int main()
           // Steer Control
           pid.UpdateError(cte);
           // Twiddle tune coefficient
-          // twiddle.tune(pid);
+          //twiddle.tune(&pid,cte);
+          pid.printValues();
           steer_value = pid.TotalError();
          
            //Throttle control
@@ -81,8 +85,9 @@ int main()
           throttle_value = pid_throttle.TotalError();
 
           // DEBUG
-          std::cout <<"steer_CTE: " << cte << " angle: " << angle << " steer_value: " << steer_value << std::endl;
-          std::cout <<"speed_CTE: " << throttle_error << " speed: " << speed << " throttle_value: " << throttle_value << std::endl;
+          //std::cout <<"steer_CTE: " << cte << " angle: " << angle << " steer_value: " << steer_value << std::endl;
+          //std::cout <<"speed_CTE: " << throttle_error << " speed: " << speed << " throttle_value: " << throttle_value << std::endl;
+          pid.printValues();
           
           json msgJson;
           msgJson["steering_angle"] = steer_value;

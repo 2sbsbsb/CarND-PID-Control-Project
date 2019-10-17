@@ -40,19 +40,29 @@ double PID::TotalError() {
   
 
 void PID::UpdateK(cofficients k, double delta) {
+    
+    std::cout << "UpdateK " << k << std::endl;   
+
     if (k == KP) {
         Kp += delta;
-        std::cout << "New Kp :" << Kp;
+        std::cout << "New Kp :" << Kp << std::endl;
     }
     else if (k == KI) {
         Ki += delta;
-        std::cout << "New Ki :" << Ki;
+        std::cout << "New Ki :" << Ki << std::endl;
     }
     else if (k == KD) {
         Kd += delta;
-        std::cout << "New Kd :" << Kd;
+        std::cout << "New Kd :" << Kd << std::endl;
     }
     else {
         std::cout << "UpdateP index out of bounds";
     }
+
+    printValues();
 }
+
+
+    void PID::printValues() {
+        std::cout <<"Kp: " << this->Kp << " Ki: " << this->Ki << " Kd: " << this->Kd << std::endl;        
+    }

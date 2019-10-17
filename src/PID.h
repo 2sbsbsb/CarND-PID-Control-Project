@@ -49,6 +49,9 @@ public:
    * Updating cofficients
    */
   void UpdateK(cofficients k, double delta);
+
+
+  void printValues();
   
 };
 

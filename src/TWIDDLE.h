@@ -9,9 +9,9 @@ public:
 
     std::vector<double> dp;
     int step, param_index;
-    double best_err;
-    bool increased_P, reduced_P;
-    double best_error = 999.9;
+    int twiddle_after_step;
+    double best_error;
+    bool adding, substracting, tried_adding, tried_subtracting;    
     
   /*
   * Constructor
@@ -29,7 +29,7 @@ public:
   void Init();
   
   
-  void tune(PID pid);
+  void tune(PID* pid,double total_error);
 
 };
 
