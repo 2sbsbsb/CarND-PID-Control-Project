@@ -2,6 +2,8 @@
 #define PID_H
 #include <chrono>
 
+enum cofficients{KP, KI, KD}; 
+
 class PID {
 public:
   /*
@@ -46,7 +48,7 @@ public:
   /**
    * Updating cofficients
    */
-  void UpdateP(int index, double amount);
+  void UpdateK(cofficients k, double delta);
   
 };
 

@@ -37,16 +37,20 @@ double PID::TotalError() {
     // Total error is summation of the three components (proportional, integral and differential)
     return (Kp * p_error + Ki * i_error + Kd * d_error);
 }
+  
 
-void PID::UpdateP(int index, double amount) {
-    if (index == 0) {
-        Kp += amount;
+void PID::UpdateK(cofficients k, double delta) {
+    if (k == KP) {
+        Kp += delta;
+        std::cout << "New Kp :" << Kp;
     }
-    else if (index == 1) {
-        Ki += amount;
+    else if (k == KI) {
+        Ki += delta;
+        std::cout << "New Ki :" << Ki;
     }
-    else if (index == 2) {
-        Kd += amount;
+    else if (k == KD) {
+        Kd += delta;
+        std::cout << "New Kd :" << Kd;
     }
     else {
         std::cout << "UpdateP index out of bounds";
