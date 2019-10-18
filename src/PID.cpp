@@ -59,7 +59,7 @@ void PID::UpdateK(cofficients k, double delta) {
         std::cout << "UpdateP index out of bounds";
     }
 
-    printValues();
+    //printValues();
 }
 
 

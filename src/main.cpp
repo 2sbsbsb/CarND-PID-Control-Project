@@ -75,8 +75,8 @@ int main()
           // Steer Control
           pid.UpdateError(cte);
           // Twiddle tune coefficient
-          //twiddle.tune(&pid,cte);
-          pid.printValues();
+          twiddle.tune(&pid,cte);
+          //pid.printValues();
           steer_value = pid.TotalError();
          
            //Throttle control
@@ -87,13 +87,13 @@ int main()
           // DEBUG
           //std::cout <<"steer_CTE: " << cte << " angle: " << angle << " steer_value: " << steer_value << std::endl;
           //std::cout <<"speed_CTE: " << throttle_error << " speed: " << speed << " throttle_value: " << throttle_value << std::endl;
-          pid.printValues();
+          //pid.printValues();
           
           json msgJson;
           msgJson["steering_angle"] = steer_value;
           msgJson["throttle"] = throttle_value;
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
-          std::cout << msg << std::endl;
+          //std::cout << msg << std::endl;
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
         }
       } else {
